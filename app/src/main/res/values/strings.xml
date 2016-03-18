@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">My App</string>
+    <string name="action_settings">Settings</string>
+    <string name="edit_message">Enter your text here</string>
+    <string name="button_send">Send Off!</string>
+    <!-- All strings in the app should be externalized
+        like such. This allows for easier localization -->
+</resources>
