@@ -17,9 +17,13 @@ public class MainActivity extends AppCompatActivity {
     /* Define keys with a namespace as best practice against collisions */
     public final static String EXTRA_MESSAGE = "com.example.macbookpro.myapp.MESSAGE";
 
+    public final static String LAST_VIEW_TIME = "com.example.macbookpro.myapp.LAST_VIEW_TIME";
+
     /**
      * When the user clicks on the send button from
      * the Button view in content_main layout
+     * 当第二个Activity创建好后，当前Activity便停止。
+     * 如果用户之后按了返回按钮，第一个Activity(MainActivity)会重新开始。
      **/
     public void sendMessage(View initiatedFromViewContext) {
         Intent intent = new Intent(this /* MainActivity */,
@@ -34,6 +38,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /* 可以把从onSaveInstanceState方法存的信息参考
+           但是,更好把代码放在onRestoreInstanceState方法
+        if(savedInstanceState != null) {
+            int lastViewTime = savedInstanceState.getInt(LAST_VIEW_TIME);
+        }
+        */
         setContentView(R.layout.activity_main); /* Necessary for interface changes */
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -69,4 +80,47 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    /**
+     * 因为onStop调用onDestroy或onRestart,其次调用onStart,所以
+     * onStart的代码经常使用状态检查(if !null) 但是第一次创建时
+     * 也会调用onStart(从onCreate)作为初始化
+     @Override
+     public void onStart() {super.onStart();}
+     **/
+
+    /**
+     * 系统在停止时会将您的 Activity 实例保留在系统内存中
+     * 所以不用老是实现
+     @Override
+     public void onStop() {}
+     **/
+
+    /**
+     * 如果真要把termiating中的状态做更多保存操作,可以通过父母类的
+     * onSaveInstanceState
+     * 在创造该Activity的时候要是想获取包里面的信息可以
+     * 1) 在onCreate方法试着通过Bundle获取键值
+     * 2) 在onRestoreInstanceState方法获取键值
+     * 最好选择2, 更清楚,也不用更多逻辑判断(if null)
+     *
+     *
+     @Override
+     public void onSaveInstanceState(Bundle savedInstanceState) {
+     // 以便允许可以保存视图层次的状态
+     super.onSaveInstanceState(savedInstanceState);
+
+     savedInstanceState.putInt(LAST_VIEW_TIME, 9001002);
+     }
+     **/
+
+    /**
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        // 以便允许可以设定保存的视图层次的状态
+        super.onRestoreInstanceState(savedInstanceState);
+
+        int lastViewTime = savedInstanceState.getInt(LAST_VIEW_TIME);
+    }
+    **/
 }
