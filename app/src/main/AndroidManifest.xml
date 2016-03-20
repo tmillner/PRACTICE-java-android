@@ -27,6 +27,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.macbookpro.myapp.MainActivity" />
         </activity>
+        <activity
+            android:name=".NewsFeed"
+            android:label="@string/title_activity_news_feed"></activity>
     </application>
 
 </manifest>

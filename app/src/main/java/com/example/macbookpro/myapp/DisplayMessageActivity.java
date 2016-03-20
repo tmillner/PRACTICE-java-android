@@ -1,6 +1,8 @@
 package com.example.macbookpro.myapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -90,4 +92,23 @@ public class DisplayMessageActivity extends AppCompatActivity {
         super.onDestroy();
     }
     */
+
+    private void writePreferences(){
+        Context context = getApplicationContext();
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                getString(R.string.yelling_message), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(getString(R.string.rage_string), "DOOHH!!");
+        editor.commit();
+    }
+
+    private String getPreferences() {
+        Context context = getApplicationContext();
+        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                getString(R.string.yelling_message), Context.MODE_PRIVATE);
+
+        String defaultMessage = getResources().getString(R.string.rage_string_default);
+        return sharedPreferences.getString(getString(R.string.rage_string), defaultMessage);
+
+    }
 }

@@ -33,4 +33,13 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_dialog_email" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|left"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_popup_reminder"
+        android:onClick="openFragment"/>
+
 </android.support.design.widget.CoordinatorLayout>

@@ -35,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void openFragment() {
+        Intent intent = new Intent(this, NewsFragment.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -2,8 +2,16 @@
     <string name="app_name">My App</string>
     <string name="action_settings">Settings</string>
     <string name="edit_message">Enter your text here</string>
+    <string name="yelling_message">com.example.macbookpro.myapp.YELLING</string>
+    <string name="rage_string">com.example.macbookpro.myapp.RAGESTRING</string>
+    <string name="rage_string_default">CRUD!</string>
+
     <string name="button_send">Send Off!</string>
     <string name="title_activity_display_message">A Message</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_news_feed">News Feed</string>
     <!-- All strings in the app should be externalized
         like such. This allows for easier localization -->
 </resources>
