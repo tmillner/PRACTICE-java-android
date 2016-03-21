@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         String message = editText.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent); /* start new instance of DisplayMessageActivity */
-
     }
 
     public void openFragment() {

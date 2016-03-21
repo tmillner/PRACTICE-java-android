@@ -29,7 +29,15 @@
         </activity>
         <activity
             android:name=".NewsFeed"
-            android:label="@string/title_activity_news_feed"></activity>
+            android:label="@string/title_activity_news_feed" />
+        <activity
+            android:name=".IntentPool"
+            android:label="@string/title_activity_intent_pool"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.macbookpro.myapp.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -68,8 +67,16 @@ public class DisplayMessageActivity extends AppCompatActivity {
         }
     }
 
+    public void openIntentPool() {
+        Intent intent = new Intent(this, IntentPool.class);
+        startActivity(intent);
+    }
+
     private void consumeMemory(String msg) {
-        this.messageDuplicated = new String[1001002003];
+        // 1048576 when using String[1001002003] app crashes w/
+        // OutOfMemoryError: Failed to allocate a 4004008024 byte allocation
+        // with 1048576 free bytes and 14MB until OOM
+        this.messageDuplicated = new String[200];
         for(int i =0; i< this.messageDuplicated.length; i++) {
             this.messageDuplicated[i] = msg;
         }
