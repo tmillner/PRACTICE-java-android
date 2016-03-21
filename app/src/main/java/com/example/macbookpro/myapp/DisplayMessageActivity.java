@@ -13,10 +13,15 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class DisplayMessageActivity extends AppCompatActivity {
 
     String[] messageDuplicated;
     String message = "";
+    final String filename = "DisplayMessageActivity.log";
 
     /*
      * Bundle（键值对的二进制大对象）中有保留状态的 View 对象（比如 EditText 中的文本）
@@ -93,10 +98,12 @@ public class DisplayMessageActivity extends AppCompatActivity {
     }
     */
 
+    // Prefrenences/首选项 are like map representations of data,
+    // not as robust as files, or DBs
     private void writePreferences(){
         Context context = getApplicationContext();
         SharedPreferences sharedPreferences = context.getSharedPreferences(
-                getString(R.string.yelling_message), Context.MODE_PRIVATE);
+                getString(R.string.pref_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(getString(R.string.rage_string), "DOOHH!!");
         editor.commit();
@@ -105,10 +112,27 @@ public class DisplayMessageActivity extends AppCompatActivity {
     private String getPreferences() {
         Context context = getApplicationContext();
         SharedPreferences sharedPreferences = context.getSharedPreferences(
-                getString(R.string.yelling_message), Context.MODE_PRIVATE);
+                getString(R.string.pref_key), Context.MODE_PRIVATE);
 
         String defaultMessage = getResources().getString(R.string.rage_string_default);
         return sharedPreferences.getString(getString(R.string.rage_string), defaultMessage);
+    }
 
+    private void writeLocalFile() {
+        FileOutputStream fileOutputStream;
+
+        try {
+            // openFileOutput() 获取写入到内部目录中的文件的 FileOutputStream 。
+            fileOutputStream = openFileOutput(this.filename, Context.MODE_PRIVATE);
+            // 在这里我们并不用查询有没有足够空间, 只要处理IOException例外就行了
+            fileOutputStream.write("THIS IS A LOG MESSAGE".getBytes());
+            fileOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void deleteLocalFile(AppCompatActivity context) {
+        context.getBaseContext().deleteFile(this.filename);
     }
 }

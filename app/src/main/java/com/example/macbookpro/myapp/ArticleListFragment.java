@@ -1,6 +1,9 @@
 package com.example.macbookpro.myapp;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -8,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
+import com.example.macbookpro.myapp.db.JuiceContract;
+import com.example.macbookpro.myapp.db.JuiceDbHelper;
 
 
 /**
@@ -112,6 +118,62 @@ public class ArticleListFragment extends ListFragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void addRowToDb() {
+        // 获取getWritableDatabase操作经常花很长的时间,最要 异步运行 (别阻挡应用)
+        SQLiteDatabase db = new JuiceDbHelper(getContext()).getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(JuiceContract.COLUMN_JUICE_NAME, "Wheatgrass");
+        // 不用执行下面 就应该自动设置过敏原为 NULL
+        // contentValues.put(JuiceContract.COLUMN_JUICE_ALLERGEN, "NULL");
+        contentValues.put(JuiceContract.COLUMN_JUICE_SEASON, "Spring, Summer, Fall");
+
+        // 第二个参数说 不接受null contentValues
+        long newRowPrimaryKey = db.insert(JuiceContract.TABLE, null, contentValues);
+    }
+
+    public void getRowFromDb() {
+        // 获取getReadableDatabase操作经常花很长的时间,最要 异步运行 (别阻挡应用)
+        SQLiteDatabase db = new JuiceDbHelper(getContext()).getReadableDatabase();
+        String[] projection = {
+                JuiceContract.COLUMN_ID,
+                JuiceContract.COLUMN_JUICE_NAME,
+                JuiceContract.COLUMN_JUICE_ALLERGEN,
+                JuiceContract.COLUMN_JUICE_SEASON
+        };
+
+        // 不用加上where
+        String whereSelection = JuiceContract.COLUMN_JUICE_ALLERGEN + " = ?";
+        String[] whereArgs= {"NULL"};
+
+        String sortOrder = "DESC";
+        Cursor cursor = db.query(JuiceContract.TABLE,
+                projection,
+                whereSelection,
+                whereArgs,
+                null,
+                null,
+                sortOrder);
+
+        cursor.moveToLast();
+        String noAllergenJuice = cursor.getString(
+                cursor.getColumnIndex(JuiceContract.COLUMN_JUICE_NAME));
+    }
+
+    public void updateRowToDb() {
+        // 获取getWritableDatabase操作经常花很长的时间,最要 异步运行 (别阻挡应用)
+        SQLiteDatabase db = new JuiceDbHelper(getContext()).getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(JuiceContract.COLUMN_JUICE_NAME, "WheatGrass");
+
+        String whereSelection = JuiceContract.COLUMN_JUICE_NAME + " = ?";
+        String[] whereArgs= {"Wheatgrass"};
+
+        long numRowsAffected = db.update(JuiceContract.TABLE,
+                contentValues,
+                whereSelection,
+                whereArgs);
     }
 
     /**
