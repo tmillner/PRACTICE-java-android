@@ -1,0 +1,113 @@
+—— ANDROID ——
+不能随意的支持所有手机版本， 这样的话得要求很多不同的匹配。而且某些版本支持不同的功能 如
+－ Jelly Bean （安卓 Beam， 无线传播信息）
+－ KitKat （HCE， 能通过NFC进行安全交易）
+
+apk就是 从app的build包容起来的zip文件（包括byte code， resources， 和manifest）。api包完成以后它被jar signer sign。然后通过ADB （debug）安装到设备上
+
+在手机上运行比用虚拟机性能更好。
+－ 1） 把手机连接到电脑
+－ 2） 在4.2.0版本以后，必须在 Settings 》 About Phone 》 7次点击Build Number
+－ 3） 在Settings菜单会看到Developer Options
+
+Layout Resource File 就是代表某个view（其中有属性比如id （标准是 id=“@+id/custom_name_here”）的xml
+
+在固定设备上开发并不是理想的选择。必须考虑横向，和不同尺寸的设备（tablets, phablets, wearables, …). 要用Responsive Design 原则。如Linear， Grid／Frame（最简单） 或 Relative（最复杂） layout
+
+要在手机上安装的话， 
+要么可以从Studio中点击Run按钮
+要么可以从命令行进行Build 
+chmod +x gradlew
+./gradlew assembleDebug （进行build， 也会输出apk 如app/build/outputs/apk/app-debug.apk）
+然后安装
+adb install app/build/outputs/apk/apk-debug.apk
+（通过platform－tools的add 安装 （可以把adb存在PATH变量里export PATH=~/Library/Android/sdk/platform-tools:$PATH)）
+
+要从命令行调用avd就用
+~/Library/Android/sdk/tools/android avd
+
+Layouts (LinearLayout, Relative Layout, …) are view group (a subclass of ViewGroup) 
+
+The at sign (@) is required when you're referring to any resource object (ex in a concrete res/string file or later compiled (when using the + after @) from XML. 
+<EditText     android:id="@+id/edit_message"     android:hint="@string/edit_message" />
+See strings.xml to define the property 
+<string name="edit_message">Enter your text here</string>
+
+android:layout_weight attribute - has the weight value,  a number that specifies the amount of remaining space each view should consume. Works in principle of parts based on siblings and parents. Ex. 3 parts flour 1 part sugar
+
+
+Every Activity is invoked by an Intent, regardless of how the user navigated there. 
+对每个Activity您的 onCreate() 的实现应定义用户界面
+
+支持不同设备必须考虑：
+－ 语言（可以创造不同的strings.xml，如 res/values-zh/strings.xml）
+－ 尺寸（也可以创造不同的layout.xml, 如 res/layout-small/content_main.xml)
+－ 方向 （ 也可以创造不同的layout.xml, 如 res/layout-land/content_main.xml) （默认情况是Portrait方向）
+－ 尺寸和方向 （如上面添加两个属性如 res/layout-large-land.xml)
+－ 密度 （也可以创造不同的png, 如 res/drawable-xhdpi/welcome.png, res/drawable-ldpi/welcome.png)
+－ 版本（也可以创造不同的menu.xml, 如 res/menu-v11/menu.xml) （但是不支持的功能（属性）以经被sdk不理了）
+
+注意： 都在相应的文件添加独特的 ”－表示”
+
+程序的Activity（活动）能处于三种静态之一
+继续（resumed）用户可以与其交互
+暂停（paused）处于半透明状态或者未覆盖整个屏幕
+停止（stopped）被视为处于后台， 状态信息将保留
+
+
+要指定主要的Activity（开始的时候启动）必须宣示action.MAIN 和 category.LAUNCHER 这是说明启动的时候要做哪些intent
+
+<activity android:name=".MainActivity" android:label="@string/app_name">
+    <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
+</activity>
+
+
+
+Activity 的生命周期是
+onCreate -> onStart -> onResume -> (onPause -> onResume | onStop -> (onRestart -> onStart) | onDestroy) 
+注意：先三个被称为三大回调
+
+onPause的最好实践是：
+－ 保存状态 （例如草稿信息）
+－ 释放系统资源
+－ 您应避免在 onPause() 期间执行 CPU 密集型工作，因为onPause是挺平常的操作，最好在onStop执行 CPU 密集型工作
+
+onStop
+对于大多数相对简单的Activity而言， Activity将停止并重新开始。 因为从一个活动转到新的活动算作第一个活动停止，返回的话第一个活动开始
+
+ Bundle（键值对的二进制大对象）中的 View 对象（比如 EditText 中的文本）
+
+onStart有两个功能
+1） 初始化（通过onCreate）
+2） 从stop状态通过onRestart调用onStart
+
+每次用户旋转屏幕时，您的Activity将被销毁并重新创建
+
+Swappable components (UI & activity behaviors) are known as fragments 
+
+一般小fragment块给一个名为fragment_something_container （包涵fragment和container）这不是fragmentActivity
+
+- All Fragment-to-Fragment communication is done through the associated Activity. Two Fragments should never communicate directly.
+- 
+当您希望确保用户或其他应用均无法访问您的文件时，内部存储是最佳选择。
+
+如果想在外部存储安装应用程序，可以在manifest元素添加
+android:installLocation
+
+要读取外部信息 必须在manifest中添加
+ <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+要写入（和读取）外部信息 必须在manifest中添加
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+对于外部公共文件，卸载应用以后应该不删除这些资源（比如通过应用拍的照片）
+对于外部私有文件，卸载应用以后应该删除这些资源（比如通过应用下载的其它辅助资源）
+
+当用户卸载应用时，Android 系统会删除您保存在内部存储中的所有文件 (包括通过getExternalFilesDir
+的内容）
+但是，您应手动删除使用 getCacheDir() 定期创建的所有缓存文件
+
+
+OTA（Over the air technology) 空中下载技术 - 通过移动通信（GSM或CDMA）的空中接口对SIM卡数据及应用进行远程管理的技术
