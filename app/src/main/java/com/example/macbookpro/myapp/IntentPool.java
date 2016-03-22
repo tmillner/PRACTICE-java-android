@@ -85,6 +85,7 @@ public class IntentPool extends Activity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         // 该函数处理所有的活动, 因此必须检查要处理哪个活动响应
+        // 这是一个很常见的(回调)模型 (跟 onRequestPermissionsResult 同样)
         if (requestCode == this.CONTACT_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 // 必须了解结果的 Intent 的格式

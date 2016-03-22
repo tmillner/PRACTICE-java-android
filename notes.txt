@@ -111,3 +111,58 @@ android:installLocation
 
 
 OTA（Over the air technology) 空中下载技术 - 通过移动通信（GSM或CDMA）的空中接口对SIM卡数据及应用进行远程管理的技术
+
+明确意向 和 隐含意向是不同的。 最常见的情况下，要发送的数据是Uri
+隐含意向 － 不是说明要通过哪些应用启动 (允许用户选择)
+隐含意向 － 是说明要通过哪些应用启动
+
+在谋人情况下如果您调用了意向，但设备上没有可用于处理意向的应用，您的应用将崩溃。 
+
+从其它应用允许别人通过我的应用处理意向，必须设置manifest中的一些相关过滤器, 如
+<activity android:name="ShareActivity">
+    <!-- filter for sending text; accepts SENDTO action with sms URI schemes -->
+    <intent-filter>
+        <action android:name="android.intent.action.SENDTO"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <data android:scheme="sms" />
+        <data android:scheme="smsto" />
+    </intent-filter>
+    <!-- filter for sending text or images; accepts SEND action and text or image data -->
+    <intent-filter>
+        <action android:name="android.intent.action.SEND"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <data android:mimeType="image/*"/>
+        <data android:mimeType="text/plain"/>
+    </intent-filter>
+
+</activity>
+
+category 是 处理该意向的表征，或者别名（一般是用户的原位置）
+category为 DEFAULT 会允许隐含意向被处理好 （这就是那个选择的对话框）
+
+注意因为android本身是应用，你会看到所有应用必须至少有一个开始的意向
+名为 <intent-filter>
+ <action android:name="android.intent.action.MAIN">
+ <category android:name="android.intent.category.LAUNCHER" />
+ ...
+ </intent-filter>
+ 这样才能启动应用
+
+ 每个活动／activity可以有多余一个意向过滤器
+
+ －－－权限－－－
+ Your app only needs permissions for actions that it performs directly.
+ （其中不通知用户）。 It does not need permission if it is requesting that another app perform the task or provide the information. （把意向发送到别的应用）
+
+ 要添加一个权限请求，必须在 manifest 中的 manifest 元素之下（而不是在application里） 添加元素
+ <uses-permission android:name="android.permission.SEND_SMS"/>
+
+在Android API level 23 和更新版以后， 应用会在应用中问用户是否允许活动的权限。不允许的话用户还能用应用（会有些限制功能）
+设置以后， 你还是可以在应用的设置中修改此首选项。 
+在Android API level 22 和更旧版以前，
+下载时就会闻到 （不允许的话用户不嫩下载应用）。 
+
+ If a feature is not a core part of your app's functionality,  consider handing the work over to another app （sending an external intent)
+
+ 记住：测试的时候，必须考虑新版本（安卓 API > 23） 允许和不允许权限的两个情况下 应用如何运行 （可以通过CLI执行权限设置 （adb shell pm））
+ 
