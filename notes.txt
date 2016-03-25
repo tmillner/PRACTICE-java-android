@@ -166,3 +166,5 @@ category为 DEFAULT 会允许隐含意向被处理好 （这就是那个选择�
 
  记住：测试的时候，必须考虑新版本（安卓 API > 23） 允许和不允许权限的两个情况下 应用如何运行 （可以通过CLI执行权限设置 （adb shell pm））
  
+用gradle比maven方便很多！ 想导入一个包的话，仅仅能在Module：app的build。gradle文件里-dependencies的部分－写入：compile 'com.android.volley:volley:1.0.0'
+
