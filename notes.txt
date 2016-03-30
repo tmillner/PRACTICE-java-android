@@ -13,6 +13,7 @@ apk就是 从app的build包容起来的zip文件（包括byte code， resources�
 Layout Resource File 就是代表某个view（其中有属性比如id （标准是 id=“@+id/custom_name_here”）的xml
 
 在固定设备上开发并不是理想的选择。必须考虑横向，和不同尺寸的设备（tablets, phablets, wearables, …). 要用Responsive Design 原则。如Linear， Grid／Frame（最简单） 或 Relative（最复杂） layout
+Frame - 允许重叠view
 
 要在手机上安装的话， 
 要么可以从Studio中点击Run按钮
@@ -168,3 +169,43 @@ category为 DEFAULT 会允许隐含意向被处理好 （这就是那个选择�
  
 用gradle比maven方便很多！ 想导入一个包的话，仅仅能在Module：app的build。gradle文件里-dependencies的部分－写入：compile 'com.android.volley:volley:1.0.0'
 
+考虑网络编程的话，要使用：
+Retrofit ＋ Picasso
+Volley
+OkHTTP （最好的）
+
+Listeners 就在android.view.View 中保藏着. 这是因为每个View能通过不同操作（如Button View）
+
+设置Listener 有一个主要办法： 
+1） 作为隐私函属性实现 Interface (private OnXXXListener xxxListener＝ new OnXXXListener() {onXXX(View view) { }
+}
+2） 把listerner绑定起来 （button.setOnXXXListener(xxxListener)
+2b 在Activity实现Interface然后（button.setOnXXXListener(this)
+
+If listener takes a long time to process +200ms, consider using a handler or asynctask
+
+把一个函数写入布局的一个元素的Listerner属性中被叫做 callback method (android:onClick="processFunction"
+
+手势，触动操作都通过实现OnTouchListeners onTouch的第二个参数MotionEvent
+包涵各种有关操作的信息 如
+onTouch(View v, MotionEvent e) {
+	int action = e.getAction();
+	switch (action):
+	case(MotionEvent.ACTION_DOWN):
+		return true;
+	case(MotionEvent.ACTION_MOVE):
+		return true;
+	
+setContentView 和 inflater 的区别在于：
+setContentView － 只能在activity中用（可以设置任何有id的View甚至动态的一个）（new WebView(this))
+inflater - 一般在fragment中用 （其实什么都可以用它）。它用来展示任何Layout xml
+
+要隐藏一个action bar 就用 getActionBar.hide()
+
+onCreateOptionsMenu 和onOptionsItemSelected 平常用在一起
+
+要允许一个互动进行以后返回到原来的位置（必须在Manifest中的Activity设置一个
+<android:parentActivityName=".MainActivity">
+这个功能可以取消（只要用getActionBar().setDisplayHomeAsUpEnabled(false))默认情况是true
+
+ActionBar == OptionsMenu (顶部)

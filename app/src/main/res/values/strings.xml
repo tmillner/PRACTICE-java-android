@@ -17,6 +17,13 @@
     <string name="intent_pool_activity2">Enter address</string>
     <string name="intent_pool_activity3">Enter email</string>
     <string name="intent_pool_activity4">Call Somebody</string>
+    <string name="title_activity_frame__example">Frame_Example</string>
+    <string name="action_search">Search</string>
+    <string-array name="colors">
+        <item>Green</item>
+        <item>Orange</item>
+        <item>Red</item>
+    </string-array>
     <!-- All strings in the app should be externalized
         like such. This allows for easier localization -->
 </resources>

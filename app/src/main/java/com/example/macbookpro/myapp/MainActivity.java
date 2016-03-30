@@ -1,5 +1,7 @@
 package com.example.macbookpro.myapp;
 
+import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,7 +11,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.SpinnerAdapter;
 
 /* Activities are a subclass of Context class */
 public class MainActivity extends AppCompatActivity {
@@ -78,11 +82,22 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch(id) {
+            case (R.id.action_settings):
+                return true;
+            case (R.id.search):
+                showAlert("You selected " + getString(R.string.action_search));
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showAlert(String message) {
+        AlertDialog alert = new AlertDialog.Builder(this).create();
+        alert.setTitle("ALERT!");
+        alert.setMessage(message);
+        alert.show();
     }
 
     /**
