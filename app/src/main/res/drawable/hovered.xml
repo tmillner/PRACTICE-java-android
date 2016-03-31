@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!-- Not even sure if this is triggerable -->
+    <corners android:radius="30dp" ></corners>
+    <gradient android:endColor="@android:color/holo_red_light"
+        android:startColor="@color/colorAccent"
+        android:angle="60" />
+</shape>

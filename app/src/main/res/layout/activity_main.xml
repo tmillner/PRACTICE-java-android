@@ -42,4 +42,11 @@
         android:src="@android:drawable/ic_popup_reminder"
         android:onClick="openFragment"/>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/menus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|left"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_menu_zoom" />
 </android.support.design.widget.CoordinatorLayout>

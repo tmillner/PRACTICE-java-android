@@ -42,7 +42,13 @@
         </activity>
         <activity
             android:name=".Frame_Example"
-            android:label="@string/title_activity_frame__example"></activity>
+            android:label="@string/title_activity_frame__example" />
+        <activity
+            android:name=".MenusActivity"
+            android:label="@string/title_activity_menus" />
+        <activity
+            android:name=".BasicStringList"
+            android:label="@string/title_activity_basic_string_list"></activity>
     </application>
 
 </manifest>

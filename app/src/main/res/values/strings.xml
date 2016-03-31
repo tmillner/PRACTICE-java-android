@@ -24,6 +24,26 @@
         <item>Orange</item>
         <item>Red</item>
     </string-array>
+    <string name="title_activity_menus">MenusActivity</string>
+
+
+    <string name="context_menu">Context Menu</string>
+    <string name="context_menu_delete">Delete</string>
+    <string name="context_menu_shrink">Shrink</string>
+
+    <string name="popup_menu">Popup Menu</string>
+    <string name="popup_menu_quit">Quit</string>
+    <string name="popup_menu_restart">Restart</string>
+    <string name="title_activity_basic_string_list">BasicStringList</string>
+    <string name="show_basic_list_view">Show Basic String list</string>
+    <string-array name="list_levels">
+        <item>Level Greenland</item>
+        <item>Level Humid Mist</item>
+        <item>Level Damp Swamp</item>
+        <item>Level All Hail</item>
+        <item>Level Volcanic Ash</item>
+    </string-array>
+
     <!-- All strings in the app should be externalized
         like such. This allows for easier localization -->
 </resources>

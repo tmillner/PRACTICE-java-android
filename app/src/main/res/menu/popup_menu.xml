@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/popup_menu_quit"
+        android:title="@string/popup_menu_quit" />
+    <item
+        android:id="@+id/popup_menu_restart"
+        android:title="@string/popup_menu_restart" />
+</menu>

@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent); /* start new instance of DisplayMessageActivity */
     }
 
-    public void openFragment() {
+    public void openFragment(View v) {
         Intent intent = new Intent(this, NewsFragment.class);
         startActivity(intent);
     }
@@ -65,6 +65,16 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        // Can't just attach onClick to a FAB in the layout xml
+        FloatingActionButton listFab = (FloatingActionButton) findViewById(R.id.menus);
+        listFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), MenusActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -89,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
                 showAlert("You selected " + getString(R.string.action_search));
                 return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

@@ -209,3 +209,18 @@ onCreateOptionsMenu 和onOptionsItemSelected 平常用在一起
 这个功能可以取消（只要用getActionBar().setDisplayHomeAsUpEnabled(false))默认情况是true
 
 ActionBar == OptionsMenu (顶部)
+
+Context Menu == 要看看菜单必须长按的东西（一般是按钮）
+
+List Views 必须和 Adapter 用在一起
+Adapter（如ListAdapter, SpinnerAdapter, ArrayAdapter, ...） 就是规定数据的来源。也规定要用的是哪些布局各式(每个元素实际上是个TextView）
+两个必须绑定起来
+listView.setAdapter(listAdapter)
+点击一个元件的话，还可以调用特定代码
+listView.setOnItemClickListener(new OnItemClickListener() { ...})
+最简单的调用是
+String[] arrayList = getStringArray(R.array.colors);
+new ArrayAdapter<String>(this, R.android.simle_list_item_1, arrayList);
+除了简单写完一个ListView，还可以为扩充ListActivity这样不用绑定Listener
+
+记住， 要使用外面环境的this可以用类的静态名（如BasicStringList.this）
