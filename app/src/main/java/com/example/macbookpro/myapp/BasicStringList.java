@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import java.util.List;
 
+// If the activitity is composed of a list mine as well just extend ListActivity
 public class BasicStringList extends Activity {
     public final static String TAG = "BasicStringList";
 
@@ -20,6 +21,7 @@ public class BasicStringList extends Activity {
         setContentView(R.layout.activity_basic_string_list);
         String[] levels = getResources().getStringArray(R.array.list_levels);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                /* Could use android list (android.R.layout.*list*) */
                 R.layout.listitem_basic_string_list,
                 levels);
         ListView listView = (ListView) findViewById(R.id.basic_string_list);
