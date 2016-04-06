@@ -48,7 +48,10 @@
             android:label="@string/title_activity_menus" />
         <activity
             android:name=".BasicStringList"
-            android:label="@string/title_activity_basic_string_list"></activity>
+            android:label="@string/title_activity_basic_string_list" />
+        <activity
+            android:name=".CreaturesActivity"
+            android:label="@string/title_activity_creatures"></activity>
     </application>
 
 </manifest>

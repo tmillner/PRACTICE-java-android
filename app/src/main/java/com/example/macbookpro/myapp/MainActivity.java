@@ -1,6 +1,5 @@
 package com.example.macbookpro.myapp;
 
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.SpinnerAdapter;
 
 /* Activities are a subclass of Context class */
 public class MainActivity extends AppCompatActivity {
@@ -67,11 +64,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Can't just attach onClick to a FAB in the layout xml
-        FloatingActionButton listFab = (FloatingActionButton) findViewById(R.id.menus);
-        listFab.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton menuFab = (FloatingActionButton) findViewById(R.id.menus);
+        menuFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(), MenusActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        FloatingActionButton listFab = (FloatingActionButton) findViewById(R.id.listFragments);
+        listFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), CreaturesActivity.class);
                 startActivity(intent);
             }
         });

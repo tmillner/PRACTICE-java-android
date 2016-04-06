@@ -49,4 +49,13 @@
         android:layout_gravity="center|left"
         android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_menu_zoom" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/listFragments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|right"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_btn_speak_now" />
+
 </android.support.design.widget.CoordinatorLayout>

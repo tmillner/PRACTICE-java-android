@@ -43,6 +43,7 @@
         <item>Level All Hail</item>
         <item>Level Volcanic Ash</item>
     </string-array>
+    <string name="title_activity_creatures">CreaturesActivity</string>
 
     <!-- All strings in the app should be externalized
         like such. This allows for easier localization -->
