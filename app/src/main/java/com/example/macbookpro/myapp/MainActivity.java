@@ -2,6 +2,7 @@ package com.example.macbookpro.myapp;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -113,6 +114,16 @@ public class MainActivity extends AppCompatActivity {
         alert.setTitle("ALERT!");
         alert.setMessage(message);
         alert.show();
+    }
+
+    public void showBitmapActivity(View v) {
+        Intent intent = new Intent(getBaseContext(), BitmapActivity.class);
+        startActivity(intent);
+    }
+
+    public void showAnimations(View v) {
+        Intent intent = new Intent(getBaseContext(), AnimationActivity.class);
+        startActivity(intent);
     }
 
     /**

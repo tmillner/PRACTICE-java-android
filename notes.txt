@@ -248,3 +248,20 @@ ft.commit();
 
 Fragment的设计一般要求不知道外面环境（Activity）。这样的话就送Event
 
+讨论多个屏幕大小（平板和手机）要知道安卓水平的不同
+小于 Android3.2 只支持4种大小
+small, normal, large, xlarge
+由于这些平常被死板的应用（比如：大的小平板，和小的小平板 同时用large）
+大于 Anroid3.2 也涉及屏幕的宽度 (sw)。这样可以在大的小平板用sw600dp，和小的小平板用sw560dp
+要支持所有个Android版本，必须同时编写两个文件 (layout-large, layout-sw600dp). 其实可以利用refs （res/values-large, res/values-sw600dp 两个里面写到：
+<resources>
+	<!-- res/layout/main_large.xml -->
+	<item name="main" type="layout">@layout/main_large</item>
+</resources>
+通过New Activity （Master／Detail Flow）， 自动能过处理上面说的一些操作
+
+性能方面上，RecycleViews > ListViews . RecycleView 也更佳柔和一些
+
+简单的说来，在manifest中，不用添加《uses－sdk》 属性，这些已经被
+app 的 build。gradle（文件涉及了）。如果在两个地方设置，请删除manifest。xml 的那个
+

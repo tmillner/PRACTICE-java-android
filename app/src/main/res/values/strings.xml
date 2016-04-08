@@ -44,7 +44,20 @@
         <item>Level Volcanic Ash</item>
     </string-array>
     <string name="title_activity_creatures">CreaturesActivity</string>
+    <string name="title_activity_bitmap_processing">BitmapProcessing</string>
+    <string name="title_activity_bitmap">BitmapActivity</string>
+    <string name="bitmap_image_description">Changeable photo</string>
+    <string name="bitmap_sample_size">Samle sizephoto</string>
+    <string name="bitmap_scale_up">Scale Up</string>
+    <string name="bitmap_scale_down">Scale Down</string>
+    <string name="bitmap_change_image">Change Image</string>
+    <string name="title_mutlidevicesupportactivity_list">Items</string>
+    <string name="title_mutlidevicesupportactivity_detail">MutliDeviceSupportActivity Detail
+    </string>
+    <string name="title_activity_animation">AnimationActivity</string>
 
     <!-- All strings in the app should be externalized
         like such. This allows for easier localization -->
+
+
 </resources>

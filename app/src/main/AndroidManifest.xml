@@ -51,7 +51,24 @@
             android:label="@string/title_activity_basic_string_list" />
         <activity
             android:name=".CreaturesActivity"
-            android:label="@string/title_activity_creatures"></activity>
+            android:label="@string/title_activity_creatures" />
+        <activity
+            android:name=".BitmapActivity"
+            android:label="@string/title_activity_bitmap" />
+        <activity
+            android:name=".MutliDeviceSupportActivityListActivity"
+            android:label="@string/title_mutlidevicesupportactivity_list" />
+        <activity
+            android:name=".MutliDeviceSupportActivityDetailActivity"
+            android:label="@string/title_mutlidevicesupportactivity_detail"
+            android:parentActivityName=".MutliDeviceSupportActivityListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.macbookpro.myapp.MutliDeviceSupportActivityListActivity" />
+        </activity>
+        <activity
+            android:name=".AnimationActivity"
+            android:label="@string/title_activity_animation"></activity>
     </application>
 
 </manifest>
