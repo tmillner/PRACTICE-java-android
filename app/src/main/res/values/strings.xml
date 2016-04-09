@@ -55,6 +55,8 @@
     <string name="title_mutlidevicesupportactivity_detail">MutliDeviceSupportActivity Detail
     </string>
     <string name="title_activity_animation">AnimationActivity</string>
+    <string name="title_activity_settings">Settings</string>
+
 
     <!-- All strings in the app should be externalized
         like such. This allows for easier localization -->

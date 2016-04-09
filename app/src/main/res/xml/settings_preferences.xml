@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Category 1">
+        <!-- keys are also associated in the SettingsActivity file -->
+        <CheckBoxPreference android:key="multiple_accounts"
+            android:title="Allow multiple accounts?"
+            android:summary="Allow multiple accounts? If on, blah blah">
+        </CheckBoxPreference>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Another category">
+        <EditTextPreference android:key="enviornment"
+            android:title="Target environment"
+            android:summary="Any environmnent which this app runs in">
+        </EditTextPreference>
+        <MultiSelectListPreference android:key="enabled_zones"
+            android:title="Enabled zones"
+            android:summary="Which zones to enable?"
+            android:entries="@array/colors"
+            android:entryValues="@array/colors">
+        </MultiSelectListPreference>
+    </PreferenceCategory>
+
+</PreferenceScreen>

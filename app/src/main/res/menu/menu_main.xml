@@ -13,7 +13,7 @@
     <item
         android:id="@+id/search"
         android:orderInCategory="50"
-        android:title="@string/action_settings"
+        android:title="search"
         android:icon="@drawable/ic_action_name"
         app:showAsAction="ifRoom|withText"
         />

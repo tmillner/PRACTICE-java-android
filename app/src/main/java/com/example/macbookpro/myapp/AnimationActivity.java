@@ -3,17 +3,32 @@ package com.example.macbookpro.myapp;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
+import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
+import android.widget.TextView;
 
-public class AnimationActivity extends Activity {
+import org.w3c.dom.Text;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class AnimationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animation);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
     public void showAnimation1(View source) {
@@ -55,12 +70,12 @@ public class AnimationActivity extends Activity {
             public void onAnimationUpdate(ValueAnimator animation) {
                 Float value = (Float) animation.getAnimatedValue();
                 image.setRotationX(value);
-                if(value < 3600) {
-                    image.setTranslationX(value/20);
+                if (value < 3600) {
+                    image.setTranslationX(value / 20);
                     image.setTranslationY(value / 20);
-                }else{
-                    image.setTranslationX((7200-value)/20);
-                    image.setTranslationY((7200-value)/20);
+                } else {
+                    image.setTranslationX((7200 - value) / 20);
+                    image.setTranslationY((7200 - value) / 20);
                 }
             }
         });
@@ -84,4 +99,35 @@ public class AnimationActivity extends Activity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        switch(menuItem.getItemId()) {
+            case (R.id.action_settings):
+                startActivity(new Intent(this, SettingsActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(menuItem);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        StringBuilder stringBuilder = new StringBuilder();
+        boolean multipleAccounts = sharedPreferences.getBoolean(SettingsActivity.MULTIPLE_ACCOUNTS, true);
+        stringBuilder.append("Multiple Accounts = " + multipleAccounts);
+        String environment = sharedPreferences.getString(SettingsActivity.ENVIORNMENT, "");
+        stringBuilder.append("Environment = " + environment);
+        Set<String> arr = sharedPreferences.getStringSet(SettingsActivity.ENABLED_ZONES, new HashSet<String>());
+        stringBuilder.append("Enabled Zones = " + arr.toString());
+        TextView textView = (TextView) findViewById(R.id.settings_string);
+        textView.setText(stringBuilder.toString());
+    }
 }
