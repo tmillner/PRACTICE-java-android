@@ -112,6 +112,7 @@ public class ArticleListFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id){
         this.callback.onArticleItemSelected(position);
+
     }
 
     @Override

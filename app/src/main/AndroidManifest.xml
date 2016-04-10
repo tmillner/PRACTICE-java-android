@@ -3,6 +3,7 @@
     package="com.example.macbookpro.myapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -69,10 +70,22 @@
         <activity
             android:name=".AnimationActivity"
             android:label="@string/title_activity_animation"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".filesapp.NotesActivity"
+            android:label="@string/title_activity_notes"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".filesapp.AddNoteActivity"
+            android:label="@string/title_activity_add_note"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".filesapp.ExternalFileViewerActivity"
+            android:label="@string/title_activity_external_file_viewer"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

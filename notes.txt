@@ -265,3 +265,29 @@ small, normal, large, xlarge
 简单的说来，在manifest中，不用添加《uses－sdk》 属性，这些已经被
 app 的 build。gradle（文件涉及了）。如果在两个地方设置，请删除manifest。xml 的那个
 
+要处理内部文件，必须知道，人和扩张Context的类，都提供一些处理文件的方法
+- getFilesDir()
+- fileList()
+- openFileOutput
+- openFileInput
+- deleteFile
+- ...
+
+SQLiteOpenHelper 本身能链接到数据库（第一次链接（getReadableDatabase, getWriteableDatabase) 会执行onCreate方法）
+
+用Cursor 在ListAdapter上面非常有用。你可以利用Cursor来自动刷新数据(最后的参数）
+ListAdapter ＝ new SimpleCursorAdapter（
+this,
+android.R.layout.two_line_list_item,
+cursor,
+new String[] {DBContract.FIRSTNAME, DBContract.LASTNAME},
+CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+
+在语句中不能这样实力化字符串的数组a = {"a"}而必须声明类如 a = new String[] {"a"}
+
+数据库中所有数据的类都返回一个字符串
+myClassInstance.setId(Integer.parseInt(cursor.getString(0)))
+
+intent.putExtra（"KEY", 1234567890) 就是从一个活动送给其它活动数据(Bundle extras = getIntent().getExtras(); extras.getLong("KEY")
+
+用SimpleCursorAdapter的时候一般在onItemClick（onItemClickListener中）使用id而不是position

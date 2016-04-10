@@ -13,6 +13,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import com.example.macbookpro.myapp.filesapp.ExternalFileViewerActivity;
+import com.example.macbookpro.myapp.filesapp.NotesActivity;
+
 /* Activities are a subclass of Context class */
 public class MainActivity extends AppCompatActivity {
 
@@ -123,6 +126,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void showAnimations(View v) {
         Intent intent = new Intent(getBaseContext(), AnimationActivity.class);
+        startActivity(intent);
+    }
+
+    public void showNotesApp(View v) {
+        Intent intent = new Intent(getBaseContext(), NotesActivity.class);
+        startActivity(intent);
+    }
+
+    public void showDirectoryFolders(View v) {
+        Intent intent = new Intent(getBaseContext(), ExternalFileViewerActivity.class);
         startActivity(intent);
     }
 
