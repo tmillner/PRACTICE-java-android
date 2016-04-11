@@ -16,6 +16,7 @@ import android.widget.EditText;
 import com.example.macbookpro.myapp.cameraapp.CameraActivity;
 import com.example.macbookpro.myapp.filesapp.ExternalFileViewerActivity;
 import com.example.macbookpro.myapp.filesapp.NotesActivity;
+import com.example.macbookpro.myapp.soundapp.SoundMonitorActivity;
 
 /* Activities are a subclass of Context class */
 public class MainActivity extends AppCompatActivity {
@@ -142,6 +143,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void showCameraApp(View v) {
         Intent intent = new Intent(getBaseContext(), CameraActivity.class);
+        startActivity(intent);
+    }
+
+    public void showSoundMonitorApp(View v) {
+        Intent intent = new Intent(getBaseContext(), SoundMonitorActivity.class);
         startActivity(intent);
     }
 

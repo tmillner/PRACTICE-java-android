@@ -61,6 +61,7 @@
     <string name="title_activity_external_file_viewer">ExternalFileViewerActivity</string>
     <string name="title_activity_camera">CameraActivity</string>
     <string name="title_activity_camera_api">CameraAPIActivity</string>
+    <string name="title_activity_sound_monitor">SoundMonitorActivity</string>
 
 
     <!-- All strings in the app should be externalized

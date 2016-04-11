@@ -7,20 +7,18 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.macbookpro.myapp.cameraapp.CameraAPIActivity">
+    tools:context="com.example.macbookpro.myapp.soundapp.SoundMonitorActivity">
 
-    <!-- This could be linear as well -->
-    <Button android:id="@+id/cameraapp_API_button"
+    <TextView
+        android:id="@+id/soundMonitorText"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Take Photo"
-        android:layout_centerHorizontal="true"
-        android:onClick="takePhoto"/>
+        android:layout_height="wrap_content" />
 
-    <SurfaceView
-        android:id="@+id/cameraapp_API_surfaceView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <Button
+        android:id="@+id/soundMonitorButton"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:background="@android:color/holo_green_light"
         android:layout_marginTop="50dp" />
 
 </RelativeLayout>
