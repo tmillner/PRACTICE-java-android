@@ -2,8 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.macbookpro.myapp">
 
+    <uses-feature android:name="android.hardware.Camera" />
+    <uses-feature android:name="android.hardware.camera2.*" />
+
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -86,7 +90,19 @@
         <activity
             android:name=".filesapp.ExternalFileViewerActivity"
             android:label="@string/title_activity_external_file_viewer"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".cameraapp.CameraActivity"
+            android:label="@string/title_activity_camera"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.macbookpro.myapp.MainActivity" />
+        </activity>
+        <activity
+            android:name=".cameraapp.CameraAPIActivity"
+            android:label="@string/title_activity_camera_api"></activity>
     </application>
 
 </manifest>

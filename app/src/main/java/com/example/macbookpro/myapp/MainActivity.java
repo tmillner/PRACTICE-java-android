@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import com.example.macbookpro.myapp.cameraapp.CameraActivity;
 import com.example.macbookpro.myapp.filesapp.ExternalFileViewerActivity;
 import com.example.macbookpro.myapp.filesapp.NotesActivity;
 
@@ -136,6 +137,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void showDirectoryFolders(View v) {
         Intent intent = new Intent(getBaseContext(), ExternalFileViewerActivity.class);
+        startActivity(intent);
+    }
+
+    public void showCameraApp(View v) {
+        Intent intent = new Intent(getBaseContext(), CameraActivity.class);
         startActivity(intent);
     }
 

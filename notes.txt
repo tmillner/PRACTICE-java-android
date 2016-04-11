@@ -10,6 +10,10 @@ apk就是 从app的build包容起来的zip文件（包括byte code， resources�
 － 2） 在4.2.0版本以后，必须在 Settings 》 About Phone 》 7次点击Build Number
 － 3） 在Settings菜单会看到Developer Options
 
+每一个SDK都有版本（4.14）和一个API水平
+
+每个SDK发布也包括支持库（如：SDK API lvl 15 包含v15 支持库）
+
 Layout Resource File 就是代表某个view（其中有属性比如id （标准是 id=“@+id/custom_name_here”）的xml
 
 在固定设备上开发并不是理想的选择。必须考虑横向，和不同尺寸的设备（tablets, phablets, wearables, …). 要用Responsive Design 原则。如Linear， Grid／Frame（最简单） 或 Relative（最复杂） layout
@@ -23,6 +27,8 @@ chmod +x gradlew
 然后安装
 adb install app/build/outputs/apk/apk-debug.apk
 （通过platform－tools的add 安装 （可以把adb存在PATH变量里export PATH=~/Library/Android/sdk/platform-tools:$PATH)）
+
+Gradle是用来build&编译Android程序
 
 要从命令行调用avd就用
 ~/Library/Android/sdk/tools/android avd
@@ -260,7 +266,7 @@ small, normal, large, xlarge
 </resources>
 通过New Activity （Master／Detail Flow）， 自动能过处理上面说的一些操作
 
-性能方面上，RecycleViews > ListViews . RecycleView 也更佳柔和一些
+性能方面上，RecycleViews > ListViews (ListFragment). RecycleView 也更佳柔和一些
 
 简单的说来，在manifest中，不用添加《uses－sdk》 属性，这些已经被
 app 的 build。gradle（文件涉及了）。如果在两个地方设置，请删除manifest。xml 的那个
@@ -288,6 +294,29 @@ CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 数据库中所有数据的类都返回一个字符串
 myClassInstance.setId(Integer.parseInt(cursor.getString(0)))
 
-intent.putExtra（"KEY", 1234567890) 就是从一个活动送给其它活动数据(Bundle extras = getIntent().getExtras(); extras.getLong("KEY")
+必须知道Activity和Fragment传递信息有所不同：
+(Activity) - intent.putExtra（"KEY", 1234567890) 就是从一个活动送给其它活动数据(Bundle extras = getIntent().getExtras(); extras.getLong("KEY")
+(Fragment) - Bundle args = new Bundle(); args.putLong("KEY", 1234567890); fragment.setArguments(args);
 
 用SimpleCursorAdapter的时候一般在onItemClick（onItemClickListener中）使用id而不是position
+
+Animation 依赖几个类（
+ - Animator (抽象类， 必须扩充)
+ - ValueAnimator
+ - ObjectAnimator
+ - AnimatiorSet
+
+
+用Camera活动（MediaStore.ACTION_IMAGE_CAPTURE）比用Camera API简单多了
+
+ActionBar 就是>Android3.0本身具有的启发功能的东西
+－ 里面可以包含ActionButton（其中可以有不同的方式显示（隐藏的，只有标签，只有图标，或者即有又有标签）
+- IF ACTIVITY EXTENDS ACTIVITY USE getActionBar(), IF IT EXTENDS APPCOMPATACTIVITY(v7) DON'T FORGET TO USE getSupportActionBar!!!
+－ 某些主题（theme）可以设置隐藏ActionBar（如果这样的话，你没办法实力话
+onCreateOptionsMenu， onOptionsItemSelected, 等) 也就是说，activity必须说明一个ActionBar （<item name="android:actionBarStyle">@style/someStyle</item>)
+
+
+在注释中可以加一个链接，必须使用／＊＊／类注释（如下
+/**
+*** {@link android.hardware.camera2}
+**/

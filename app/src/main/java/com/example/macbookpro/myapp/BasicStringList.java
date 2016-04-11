@@ -11,7 +11,7 @@ import android.widget.ListView;
 
 import java.util.List;
 
-// If the activitity is composed of a list mine as well just extend ListActivity
+// If the activitity is composed of ONLY a list, mine as well just extend ListActivity
 public class BasicStringList extends Activity {
     public final static String TAG = "BasicStringList";
 
