@@ -320,3 +320,28 @@ onCreateOptionsMenu， onOptionsItemSelected, 等) 也就是说，activity必须
 /**
 *** {@link android.hardware.camera2}
 **/
+
+Handler 一般通过postDelayed 和 postAt 来处理Runnable
+handler.postAt(myRunnable, 10000 + System.currentTimeMillis());
+必须小心Handler从调用它的UI，Thread执行（于是，很可能阻挡Thread）
+
+在View中要插入一个style，可以添加style属性如
+<ProgressBar 
+style="?android:attr/progressBarStyleHorizontal">
+
+异步性任务的几个重要点是：
+- 要创造自己的扩充　AsyncTask 的类
+-- onPostExecute
+-- onProgressUpdate 如果没有进步栏，不用实行
+- 要设置一个进步栏的值
+- 准备好以后要调用execute (myTask.execute(inputThing))
+
+Spinner == Dropdown
+
+Services = (android.app.Service/IntentService) 可以设置为public或private.
+Services 的状态可以有3种
+－ Started
+－ Bound
+－ Started ＋ Bound
+IntentService比Service更简单一些。用IntentServcie只要实行onHandleIntent（Intent intent)然后在别的Activity中运行startService(intent)
+Services 本身不在别的线程运行（只有onHandleIntent）！它从主线程运行

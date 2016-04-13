@@ -70,4 +70,23 @@
         android:text="Show SoundMonitor App"
         android:onClick="showSoundMonitorApp"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Simple Handler App"
+        android:onClick="showSimpleHandler"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Async Task"
+        android:onClick="showAsyncTask"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Broadcast Task"
+        android:onClick="showBroadcastTask"/>
+
+
 </LinearLayout>

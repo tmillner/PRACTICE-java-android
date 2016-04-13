@@ -62,6 +62,9 @@
     <string name="title_activity_camera">CameraActivity</string>
     <string name="title_activity_camera_api">CameraAPIActivity</string>
     <string name="title_activity_sound_monitor">SoundMonitorActivity</string>
+    <string name="title_activity_handler_example">HandlerExampleActivity</string>
+    <string name="title_activity_async">AsyncActivity</string>
+    <string name="title_activity_broadcast">BroadcastActivity</string>
 
 
     <!-- All strings in the app should be externalized

@@ -58,5 +58,4 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_btn_speak_now" />
 
-
 </android.support.design.widget.CoordinatorLayout>

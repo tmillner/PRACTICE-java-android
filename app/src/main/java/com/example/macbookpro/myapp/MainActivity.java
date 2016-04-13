@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import com.example.macbookpro.myapp.broadcast.BroadcastActivity;
 import com.example.macbookpro.myapp.cameraapp.CameraActivity;
 import com.example.macbookpro.myapp.filesapp.ExternalFileViewerActivity;
 import com.example.macbookpro.myapp.filesapp.NotesActivity;
@@ -148,6 +149,21 @@ public class MainActivity extends AppCompatActivity {
 
     public void showSoundMonitorApp(View v) {
         Intent intent = new Intent(getBaseContext(), SoundMonitorActivity.class);
+        startActivity(intent);
+    }
+
+    public void showSimpleHandler(View v) {
+        Intent intent = new Intent(getBaseContext(), HandlerExampleActivity.class);
+        startActivity(intent);
+    }
+
+    public void showAsyncTask(View v) {
+        Intent intent = new Intent(getBaseContext(), AsyncActivity.class);
+        startActivity(intent);
+    }
+
+    public void showBroadcastTask(View v) {
+        Intent intent = new Intent(getBaseContext(), BroadcastActivity.class);
         startActivity(intent);
     }
 
