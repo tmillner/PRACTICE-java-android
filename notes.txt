@@ -345,3 +345,9 @@ Services 的状态可以有3种
 － Started ＋ Bound
 IntentService比Service更简单一些。用IntentServcie只要实行onHandleIntent（Intent intent)然后在别的Activity中运行startService(intent)
 Services 本身不在别的线程运行（只有onHandleIntent）！它从主线程运行
+
+Broadcasters 允许系统或程序发送别的程序能使用（通过Recievers）的信息／数据
+android.content.Intent 包含静态broadcast的值
+每个Context都有registerReciever和unregisterReciever的处理方法
+
+IllegalStateException: Could not find method myMethod(View) in a parent or ancestor Context for android:onClick attribute 一般说明Activity忘了添加View 

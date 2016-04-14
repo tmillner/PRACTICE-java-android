@@ -16,4 +16,22 @@
         android:layout_height="wrap_content"
         android:textSize="50pt"
         android:text="0:00"/>
+
+    <Button
+        android:id="@+id/broadcastSetNotification"
+        android:layout_below="@+id/broadcastTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="setNotification"
+        android:text="Set Notification"/>
+
+    <Button
+        android:id="@+id/broadcastCancelNotification"
+        android:layout_toRightOf="@+id/broadcastSetNotification"
+        android:layout_below="@+id/broadcastTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="cancelNotification"
+        android:text="Cancel Notification"/>
+
 </RelativeLayout>
