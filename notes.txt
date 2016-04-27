@@ -351,3 +351,39 @@ android.content.Intent 包含静态broadcast的值
 每个Context都有registerReciever和unregisterReciever的处理方法
 
 IllegalStateException: Could not find method myMethod(View) in a parent or ancestor Context for android:onClick attribute 一般说明Activity忘了添加View 
+
+
+
+- ArrayAdapters getView is used to show a new View for a list item. Do not inflate items each time. During scrolling, the performance takes a hit (inflation + reflection take some time). Instead use ViewHolder/Recycler pattern (checking convertView)
+
+- ViewHolder is a custom static class used to hold data of anything
+
+- convertView is a slot of a list item viewable on the screen. (only a few)
+
+- With setTag (from on Views), it allows you to associate arbitrary objects with the view for storage. Must manually invoke reference on it since they are not accessed by default. Often used with ViewHolder/Recycler pattern ex. holder = (ViewHolder) convertView.getTag()
+
+- Always rescale bg drawable images. If at runtime it scales, its less performant. ex
+
+-- Bitmap.createScaledBitmap(originalImage. view.getWidth(), …)
+
+- For pages with their custom bg (ex map) that aren’t shown. be sure to override bg in style <resources> 
+    - <style name=“Theme.NoBG” parent=“android.Theme”>
+        - <item name=“android.windowBackground”>@null</item>
+    - </style>
+- </resources>
+
+- <activity android:theme=“@style/NoBG” …>
+
+- Devtools Show Screen Updates shows what’s being redrawn (helps check if redraw is efficient (only redrawing what it needs) or wasteful)
+
+- More views == longer startup, slower layout, slower drawing, etc.
+
+- If need to create a list item with an icon and text, instead of use linear view w/image and text view, use 1 text view with drawableLeft property
+
+- ViewStub used to reduce views. Just create new element and setVisibility(Visible)
+
+- Instead of working with Default layouts & views, can use custom layouts (public class Gridlayout extends ViewGrup)
+
+- java.lang.IllegalStateException: Handler (android.os.Handler) {5e6bdc9} sending message to a Handler on a dead thread. == Invoking code in onHandleIntent, when since IntentService does that in a new thread and closes it after return. That code (often a long running task or Toast) was left in an illegal state.
+
+- ^ In classes of ArrayAdapters, overriding getFilter and performFilter (is a part of the onHandleIntent)
